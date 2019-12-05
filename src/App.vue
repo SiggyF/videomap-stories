@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Hello Vue in CodeSandbox!" />
+    <VideoStory msg="Hello Vue in CodeSandbox!" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import VideoStory from "./components/VideoStory";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    VideoStory
   }
 };
 </script>
