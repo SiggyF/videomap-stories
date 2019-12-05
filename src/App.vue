@@ -1,11 +1,15 @@
 <template>
-  <div id="app">
-    <VideoStory msg="Hello Vue in CodeSandbox!" />
-  </div>
+<div id="app">
+  <router-view></router-view>
+
+</div>
 </template>
 
 <script>
-import VideoStory from "./components/VideoStory";
+import VideoStory from "./components/VideoStory"
+import Home from "./views/Home"
+
+
 
 export default {
   name: "App",

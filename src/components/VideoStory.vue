@@ -1,9 +1,8 @@
-
 <template>
 <div>
   <div id="map"></div>
   <div id="story"></div>
-  </div>
+</div>
 </template>
 <script>
 import mapboxgl from 'mapbox-gl'
@@ -12,206 +11,209 @@ import  scrollama from 'scrollama'
 
 import config from '../stories/glacier.js'
 export default {
-  mounted () {
-var layerTypes = {
-    'fill': ['fill-opacity'],
-    'line': ['line-opacity'],
-    'circle': ['circle-opacity', 'circle-stroke-opacity'],
-    'symbol': ['icon-opacity', 'text-opacity'],
-    'raster': ['raster-opacity'],
-    'fill-extrusion': ['fill-extrusion-opacity']
-}
+    async mounted () {
+        let storyName = this.$route.params.story
+        let resp = await fetch('stories/' + storyName + '.json')
+        let config = await resp.json()
+        var layerTypes = {
+            'fill': ['fill-opacity'],
+            'line': ['line-opacity'],
+            'circle': ['circle-opacity', 'circle-stroke-opacity'],
+            'symbol': ['icon-opacity', 'text-opacity'],
+            'raster': ['raster-opacity'],
+            'fill-extrusion': ['fill-extrusion-opacity']
+        }
 
-var alignments = {
-    'left': 'lefty',
-    'center': 'centered',
-    'right': 'righty'
-}
+        var alignments = {
+            'left': 'lefty',
+            'center': 'centered',
+            'right': 'righty'
+        }
 
-function getLayerPaintType(layer) {
-    var layerType = map.getLayer(layer).type;
-    return layerTypes[layerType];
-}
+        function getLayerPaintType(layer) {
+            var layerType = map.getLayer(layer).type;
+            return layerTypes[layerType];
+        }
 
-function setLayerOpacity(layer) {
-    var paintProps = getLayerPaintType(layer.layer);
-    paintProps.forEach(function(prop) {
-        map.setPaintProperty(layer.layer, prop, layer.opacity);
-    });
-}
+        function setLayerOpacity(layer) {
+            var paintProps = getLayerPaintType(layer.layer);
+            paintProps.forEach(function(prop) {
+                map.setPaintProperty(layer.layer, prop, layer.opacity);
+            });
+        }
 
-var story = document.getElementById('story');
-var features = document.createElement('div');
-features.classList.add(alignments[config.alignment]);
-features.setAttribute('id', 'features');
+        var story = document.getElementById('story');
+        var features = document.createElement('div');
+        features.classList.add(alignments[config.alignment]);
+        features.setAttribute('id', 'features');
 
-var header = document.createElement('div');
+        var header = document.createElement('div');
 
-if (config.title) {
-    var titleText = document.createElement('h1');
-    titleText.innerText = config.title;
-    header.appendChild(titleText);
-}
+        if (config.title) {
+            var titleText = document.createElement('h1');
+            titleText.innerText = config.title;
+            header.appendChild(titleText);
+        }
 
-if (config.subtitle) {
-    var subtitleText = document.createElement('h2');
-    subtitleText.innerText = config.subtitle;
-    header.appendChild(subtitleText);
-}
+        if (config.subtitle) {
+            var subtitleText = document.createElement('h2');
+            subtitleText.innerText = config.subtitle;
+            header.appendChild(subtitleText);
+        }
 
-if (config.byline) {
-    var bylineText = document.createElement('p');
-    bylineText.innerText = config.byline;
-    header.appendChild(bylineText);
-}
+        if (config.byline) {
+            var bylineText = document.createElement('p');
+            bylineText.innerText = config.byline;
+            header.appendChild(bylineText);
+        }
 
-if (header.innerText.length > 0) {
-    header.classList.add(config.theme);
-    header.setAttribute('id', 'header');
-    story.appendChild(header);
-}
+        if (header.innerText.length > 0) {
+            header.classList.add(config.theme);
+            header.setAttribute('id', 'header');
+            story.appendChild(header);
+        }
 
-config.chapters.forEach((record, idx) => {
-    var container = document.createElement('div');
-    var chapter = document.createElement('div');
-    
-    if (record.title) {
-        var title = document.createElement('h3');
-        title.innerText = record.title;
-        chapter.appendChild(title);
-    }
-    
-    if (record.image) {
-        var image = new Image();  
-        image.src = record.image;  
-        chapter.appendChild(image);
-    }
-    
-    if (record.description) {
-        var story = document.createElement('p');
-        story.innerHTML = record.description;
-        chapter.appendChild(story);
-    }
+        config.chapters.forEach((record, idx) => {
+            var container = document.createElement('div');
+            var chapter = document.createElement('div');
 
-    container.setAttribute('id', record.id);
-    container.classList.add('step');
-    if (idx === 0) {
-        container.classList.add('active');
-    }
+            if (record.title) {
+                var title = document.createElement('h3');
+                title.innerText = record.title;
+                chapter.appendChild(title);
+            }
 
-    chapter.classList.add(config.theme);
-    container.appendChild(chapter);
-    features.appendChild(container);
-});
+            if (record.image) {
+                var image = new Image();
+                image.src = record.image;
+                chapter.appendChild(image);
+            }
 
-story.appendChild(features);
+            if (record.description) {
+                var story = document.createElement('p');
+                story.innerHTML = record.description;
+                chapter.appendChild(story);
+            }
 
-var footer = document.createElement('div');
+            container.setAttribute('id', record.id);
+            container.classList.add('step');
+            if (idx === 0) {
+                container.classList.add('active');
+            }
 
-if (config.footer) {
-    var footerText = document.createElement('p');
-    footerText.innerHTML = config.footer;
-    footer.appendChild(footerText);
-}
+            chapter.classList.add(config.theme);
+            container.appendChild(chapter);
+            features.appendChild(container);
+        });
 
-if (footer.innerText.length > 0) {
-    footer.classList.add(config.theme);
-    footer.setAttribute('id', 'footer');
-    story.appendChild(footer);
-}
+        story.appendChild(features);
 
-mapboxgl.accessToken = config.accessToken;
+        var footer = document.createElement('div');
 
-const transformRequest = (url) => {
-    const hasQuery = url.indexOf("?") !== -1;	  
-    const suffix = hasQuery ? "&pluginName=journalismScrollytelling" : "?pluginName=journalismScrollytelling";	  
-    return {
-      url: url + suffix
-    }	  
-}
+        if (config.footer) {
+            var footerText = document.createElement('p');
+            footerText.innerHTML = config.footer;
+            footer.appendChild(footerText);
+        }
 
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: config.style,
-    center: config.chapters[0].location.center,
-    zoom: config.chapters[0].location.zoom,
-    bearing: config.chapters[0].location.bearing,
-    pitch: config.chapters[0].location.pitch,
-    scrollZoom: false,
-    transformRequest: transformRequest
-});
+        if (footer.innerText.length > 0) {
+            footer.classList.add(config.theme);
+            footer.setAttribute('id', 'footer');
+            story.appendChild(footer);
+        }
 
-var marker = new mapboxgl.Marker();
-if (config.showMarkers) {
-    marker.setLngLat(config.chapters[0].location.center).addTo(map);
-}
+        mapboxgl.accessToken = config.accessToken;
 
-// instantiate the scrollama
-var scroller = scrollama();
+        const transformRequest = (url) => {
+            const hasQuery = url.indexOf("?") !== -1;
+            const suffix = hasQuery ? "&pluginName=journalismScrollytelling" : "?pluginName=journalismScrollytelling";
+            return {
+                url: url + suffix
+            }
+        }
 
-map.on("load", function() {
-    if (config.layers) {
-        config.layers.forEach(
-            layer => map.addLayer(layer)
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: config.style,
+            center: config.chapters[0].location.center,
+            zoom: config.chapters[0].location.zoom,
+            bearing: config.chapters[0].location.bearing,
+            pitch: config.chapters[0].location.pitch,
+            scrollZoom: false,
+            transformRequest: transformRequest
+        });
 
-        )
-    }
-
-    // setup the instance, pass callback functions
-    scroller
-    .setup({
-        step: '.step',
-        offset: 0.5,
-        progress: true
-    })
-    .onStepEnter(response => {
-        console.log('enter',  response)
-        var chapter = config.chapters.find(chap => chap.id === response.element.id);
-        response.element.classList.add('active');
-        map.flyTo(chapter.location);
+        var marker = new mapboxgl.Marker();
         if (config.showMarkers) {
-            marker.setLngLat(chapter.location.center);
+            marker.setLngLat(config.chapters[0].location.center).addTo(map);
         }
-        if (chapter.onChapterEnter.length > 0) {
-            chapter.onChapterEnter.forEach(setLayerOpacity);
-        }
-    })
-    .onStepExit(response => {
-        console.log('exit',  response)
 
-        var chapter = config.chapters.find(chap => chap.id === response.element.id);
-        response.element.classList.remove('active');
-        if (chapter.onChapterExit.length > 0) {
-            chapter.onChapterExit.forEach(setLayerOpacity);
-        }
-    });
-});
+        // instantiate the scrollama
+        var scroller = scrollama();
 
-// setup resize event
-window.addEventListener('resize', scroller.resize);
+        map.on("load", function() {
+            if (config.layers) {
+                config.layers.forEach(
+                    layer => map.addLayer(layer)
 
-  }
+                )
+            }
+
+            // setup the instance, pass callback functions
+            scroller
+                .setup({
+                    step: '.step',
+                    offset: 0.5,
+                    progress: true
+                })
+                .onStepEnter(response => {
+                    console.log('enter',  response)
+                    var chapter = config.chapters.find(chap => chap.id === response.element.id);
+                    response.element.classList.add('active');
+                    map.flyTo(chapter.location);
+                    if (config.showMarkers) {
+                        marker.setLngLat(chapter.location.center);
+                    }
+                    if (chapter.onChapterEnter.length > 0) {
+                        chapter.onChapterEnter.forEach(setLayerOpacity);
+                    }
+                })
+                .onStepExit(response => {
+                    console.log('exit',  response)
+
+                    var chapter = config.chapters.find(chap => chap.id === response.element.id);
+                    response.element.classList.remove('active');
+                    if (chapter.onChapterExit.length > 0) {
+                        chapter.onChapterExit.forEach(setLayerOpacity);
+                    }
+                });
+        });
+
+        // setup resize event
+        window.addEventListener('resize', scroller.resize);
+
+    }
 }
 
 </script>
-    <style>
-        body {
-            margin:0; 
-            padding:0; 
-            font-family: sans-serif;
-        }
-        a, a:hover, a:visited {
-            color: #0071bc;
-        }
-        #map {
-            top:0; 
-            height: 100vh;
-            width:100vw;
-            position: fixed;
-            z-index: -5;
-        }
-        #header {
-            margin: 3vh auto;
+<style>
+  body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  }
+  a, a:hover, a:visited {
+  color: #0071bc;
+  }
+  #map {
+  top:0;
+  height: 100vh;
+  width:100vw;
+  position: fixed;
+  z-index: -5;
+  }
+  #header {
+  margin: 3vh auto;
             width: 90vw;
             padding: 2vh;
             text-align: center;
