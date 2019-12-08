@@ -1,0 +1,139 @@
+[
+  {
+    "id": "glacier",
+    "style": "mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Thwaits_Glacier.jpg/800px-Thwaits_Glacier.jpg",
+    "layers": [{
+	    "id": "ice",
+	    "type": "raster",
+	    "source": {
+	      "type": "raster",
+	      "tiles": ["https://storage.googleapis.com/deltares-video-map/s1-ice-timelapse/00000/{z}/{x}/{y}.png"],
+	      "tileSize": 256
+	    },
+	    "paint": {}
+    }],
+    "accessToken": "pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg",
+    "showMarkers": false,
+    "alignment": "left",
+    "theme": "dark",
+    "title": "Antarctic Glaciers",
+    "subtitle": "Change in coverage from 1998 to 2015",
+    "byline": "",
+    "footer": "Source: Story text from Wikipedia, August 2019. Data from <a href=\"https://www.usgs.gov/centers/norock/science/retreat-glaciers-glacier-national-park\">USGS</a>",
+    "chapters": [
+      {
+	      "id": "glacier-np",
+	      "title": "Glacier National Park Glaciers",
+	      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg",
+	      "description": "\n                The Thwaites Glacier flows into the arm of the Amundsen Sea in West Antarctica. Only a <a src=\"https://thwaitesglacier.org/news/scientists-embark-ambitious-mission-antarcticas-thwaites-glacier\">few people</a> ever set foot on this glacier due to it's remote location, 1600 km away from the British research station.\n      ",
+	      "location": {
+	        "center": [-110.89744, -74.15099],
+	        "zoom": 6.3,
+	        "pitch": 60,
+	        "bearing": 12.75
+	      },
+	      "onChapterEnter": [{
+	        "layer": "ice",
+	        "opacity": 1
+	      }],
+	      "onChapterExit": [{
+	        "layer": "ice",
+	        "opacity": 1
+	      }]
+      },
+      {
+	      "id": "harrison1998",
+	      "title": "Harrison Glacier, 1998",
+	      "image": "",
+	      "description": "Harrison Glacier is located in the US state of Montana in Glacier National Park. Situated on a southeast facing ridge immediately south of Mount Jackson, Harrison Glacier is the largest glacier in Glacier National Park. Compared to many of the vanishing glaciers in Glacier National Park, Harrison Glacier has a much higher altitude accumulation zone (approximately 9,000 feet (2,700 m)) which has allowed it to maintain some equilibrium in its glacier mass balance.",
+	      "location": {
+	        "center": [-109.89284, -74.28918],
+	        "zoom": 8.13,
+	        "pitch": 60,
+	        "bearing": 12.75
+	      },
+	      "onChapterEnter": [],
+	      "onChapterExit": []
+      },
+      {
+	      "id": "harrison2015",
+	      "title": "Harrison Glacier, 2015",
+	      "image": "",
+	      "description": "Between 1998 and 2015, Harrison Glacier lost 169 acres of surface area (about 37%).",
+	      "location": {
+	        "center": [-109.83808, -74.25103],
+	        "zoom": 9.94,
+	        "pitch": 59.5,
+	        "bearing": 10.35
+	      },
+	      "onChapterEnter": [{
+	        "layer": "gnpglaciers-2015",
+	        "opacity": 0.25
+	      }],
+	      "onChapterExit": [{
+	        "layer": "gnpglaciers-2015",
+	        "opacity": 0
+	      }]
+      }
+    ]
+  },
+  {
+    "id": "merowe",
+	  "style": "mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/MeroweDam01.jpg/800px-MeroweDam01.jpg",
+	  "layers": [{
+		  "id": "dam",
+		  "type": "raster",
+		  "source": {
+			  "type": "video-tiled",
+			  "tiles": ["http://localhost:8080/dam-Merowe-video/{z}/{x}/{y}.webm"],
+			  "scheme": "xyz",
+			  "tileSize": 512,
+			  "minzoom": 0,
+			  "maxzoom": 12,
+			  "playbackRate": 1,
+			  "geometryFilter": "https://storage.googleapis.com/deltares-video-map/dam-Merowe-video/geometry.geojson"
+		  },
+		  "paint": {}
+	  }],
+	  "accessToken": "pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg",
+	  "showMarkers": false,
+	  "alignment": "left",
+	  "theme": "dark",
+	  "title": "Merowe Dam",
+	  "subtitle": "Change in coverage from 1998 to 2015",
+	  "byline": "",
+	  "footer": "Source: Story text from Wikipedia, August 2019. Data from <a href=\"https://www.usgs.gov/centers/norock/science/retreat-glaciers-glacier-national-park\">USGS</a>",
+	  "chapters": [
+      {
+		    "id": "glacier-np",
+		    "title": "Glacier National Park Glaciers",
+		    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg",
+		    "description": "\n                The Thwaites Glacier flows into the arm of the Amundsen Sea in West Antarctica. Only a <a src=\"https://thwaitesglacier.org/news/scientists-embark-ambitious-mission-antarcticas-thwaites-glacier\">few people</a> ever set foot on this glacier due to it's remote location, 1600 km away from the British research station.\n      ",
+		    "location": {
+			    "center": [35.8824, 14.4041],
+			    "zoom": 8,
+			    "pitch": 60,
+			    "bearing": 12.75
+		    },
+		    "onChapterEnter": [],
+		    "onChapterExit": []
+	    }, {
+		    "id": "harrison1998",
+		    "title": "Harrison Glacier, 1998",
+		    "image": "",
+		    "description": "Harrison Glacier is located in the US state of Montana in Glacier National Park. Situated on a southeast facing ridge immediately south of Mount Jackson, Harrison Glacier is the largest glacier in Glacier National Park. Compared to many of the vanishing glaciers in Glacier National Park, Harrison Glacier has a much higher altitude accumulation zone (approximately 9,000 feet (2,700 m)) which has allowed it to maintain some equilibrium in its glacier mass balance.",
+		    "location": {
+			    "center": [-109.89284, -74.28918],
+			    "zoom": 8.13,
+			    "pitch": 60,
+			    "bearing": 12.75
+		    },
+		    "onChapterEnter": [],
+		    "onChapterExit": []
+	    }
+    ]
+  }
+
+]
