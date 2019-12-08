@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import App from "./App.vue";
 import Home from "./views/Home"
 import VideoStory from "./components/VideoStory"
+import vuetify from './plugins/vuetify';
 
 Vue.use(VueRouter)
 
@@ -29,5 +30,6 @@ const router = new VueRouter({
 
 new Vue({
     router,
+    vuetify,
     render: h => h(App)
 }).$mount("#app");
