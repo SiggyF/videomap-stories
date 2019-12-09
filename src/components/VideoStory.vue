@@ -15,6 +15,7 @@ export default {
   async mounted () {
     let id = this.$route.params.story
     let config = _.find(stories, ['id', id])
+    console.log('config', config)
 
     var layerTypes = {
       'fill': ['fill-opacity'],
@@ -143,6 +144,7 @@ export default {
       scrollZoom: false,
       transformRequest: transformRequest
     });
+    window.map = map
 
     var marker = new mapboxgl.Marker();
     if (config.showMarkers) {
@@ -203,10 +205,13 @@ body {
   padding:0;
   font-family: sans-serif;
 }
+
+
 a, a:hover, a:visited {
   color: #0071bc;
 }
 #map {
+  z-index: -5;
   top:0;
   height: 100vh;
   width:100vw;

@@ -1,15 +1,40 @@
 [
   {
     "id": "glacier",
-    "style": "mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d",
+    "style": {
+      "version": 8,
+      "sources": {
+        "satellite": {
+          "type": "raster",
+          "url": "mapbox://mapbox.satellite",
+          "tileSize": 256
+        }
+      },
+      "layers": [
+        {
+          "id": "satellite",
+          "type": "raster",
+          "paint": {
+            "raster-saturation": -1,
+            "raster-brightness-max": 0.6
+          },
+          "source": "satellite"
+        }
+      ]
+
+
+    },
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Thwaits_Glacier.jpg/800px-Thwaits_Glacier.jpg",
     "layers": [{
 	    "id": "ice",
 	    "type": "raster",
 	    "source": {
-	      "type": "raster",
-	      "tiles": ["https://storage.googleapis.com/deltares-video-map/s1-ice-timelapse/00000/{z}/{x}/{y}.png"],
-	      "tileSize": 256
+        "type": "video-tiled",
+
+	      "tiles": ["https://storage.googleapis.com/deltares-video-map/s1-ice-video/{z}/{x}/{y}.webm"],
+	      "tileSize": "512",
+        "playbackRate": 1,
+        "geometryFilter": "https://storage.googleapis.com/deltares-video-map/s1-ice-video/geometry.geojson"
 	    },
 	    "paint": {}
     }],
@@ -17,16 +42,16 @@
     "showMarkers": false,
     "alignment": "left",
     "theme": "dark",
-    "title": "Antarctic Glaciers",
-    "subtitle": "Change in coverage from 1998 to 2015",
+    "title": "Thwaites glacier",
+    "subtitle": "One of the most remote places on earth is emerging as a major source of sea-level rise.",
     "byline": "",
     "footer": "Source: Story text from Wikipedia, August 2019. Data from <a href=\"https://www.usgs.gov/centers/norock/science/retreat-glaciers-glacier-national-park\">USGS</a>",
     "chapters": [
       {
 	      "id": "glacier-np",
-	      "title": "Glacier National Park Glaciers",
-	      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg",
-	      "description": "\n                The Thwaites Glacier flows into the arm of the Amundsen Sea in West Antarctica. Only a <a src=\"https://thwaitesglacier.org/news/scientists-embark-ambitious-mission-antarcticas-thwaites-glacier\">few people</a> ever set foot on this glacier due to it's remote location, 1600 km away from the British research station.\n      ",
+	      "title": "Twaits Glacier",
+	      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Thwaits_Glacier.jpg/1600px-Thwaits_Glacier.jpg",
+	      "description": "\nThe Thwaites Glacier flows into the arm of the Amundsen Sea in West Antarctica. Only a <a src=\"https://thwaitesglacier.org/news/scientists-embark-ambitious-mission-antarcticas-thwaites-glacier\">few people</a> ever set foot on this glacier due to it's remote location, 1600 km away from the British research station.\n      ",
 	      "location": {
 	        "center": [-110.89744, -74.15099],
 	        "zoom": 6.3,
@@ -58,9 +83,9 @@
       },
       {
 	      "id": "harrison2015",
-	      "title": "Harrison Glacier, 2015",
+	      "title": "Change",
 	      "image": "",
-	      "description": "Between 1998 and 2015, Harrison Glacier lost 169 acres of surface area (about 37%).",
+	      "description": "Show player",
 	      "location": {
 	        "center": [-109.83808, -74.25103],
 	        "zoom": 9.94,
@@ -101,8 +126,8 @@
 	  "showMarkers": false,
 	  "alignment": "left",
 	  "theme": "dark",
-	  "title": "Merowe Dam",
-	  "subtitle": "Change in coverage from 1998 to 2015",
+	  "title": "Merowe dam",
+	  "subtitle": "The largest hydropower project in Africa. More than one billion Watts of green energy, but at what costs?",
 	  "byline": "",
 	  "footer": "Source: Story text from Wikipedia, August 2019. Data from <a href=\"https://www.usgs.gov/centers/norock/science/retreat-glaciers-glacier-national-park\">USGS</a>",
 	  "chapters": [
@@ -134,6 +159,18 @@
 		    "onChapterExit": []
 	    }
     ]
+  },
+  {
+    "id": "nightwatch",
+    "title": "The Night Watch",
+    "subtitle": "If you look at the earth at night you see the populations lighting up. What are we up to?",
+    "image": "images/viirs.png"
+  },
+  {
+    "id": "bathymetry",
+    "title": "Wadden",
+    "subtitle": "The intertidal area in the North Sea is a favourite area for European birds. How does it react to sea-level rise and gas extraction?",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Den_Helder_4.77628E_52.95026N.jpg/800px-Den_Helder_4.77628E_52.95026N.jpg"
   }
 
 ]

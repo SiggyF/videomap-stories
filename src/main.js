@@ -2,9 +2,8 @@ import Vue from "vue";
 import VueRouter from 'vue-router'
 
 import App from "./App.vue";
-import Home from "./views/Home"
-import VideoStory from "./components/VideoStory"
-import vuetify from './plugins/vuetify';
+import Home from "./views/HomeSimple"
+import Story from "./views/Story"
 
 Vue.use(VueRouter)
 
@@ -16,7 +15,7 @@ Vue.config.productionTip = false;
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-    { path: '/stories/:story', component: VideoStory },
+    { path: '/stories/:story', component: Story },
     { path: '/', component: Home }
 ]
 
@@ -30,6 +29,5 @@ const router = new VueRouter({
 
 new Vue({
     router,
-    vuetify,
     render: h => h(App)
 }).$mount("#app");
