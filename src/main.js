@@ -2,8 +2,11 @@ import Vue from "vue";
 import VueRouter from 'vue-router'
 
 import App from "./App.vue";
-import Home from "./views/HomeSimple"
+import Home from "./views/Home"
 import Story from "./views/Story"
+import Map from "./views/Map"
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+
 
 Vue.use(VueRouter)
 
@@ -15,8 +18,9 @@ Vue.config.productionTip = false;
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-    { path: '/stories/:story', component: Story },
-    { path: '/', component: Home }
+  { path: '/stories/:id', component: Story, name: 'story' },
+  { path: '/map/:id', component: Map, name: 'map' },
+  { path: '/', component: Home }
 ]
 
 // 3. Create the router instance and pass the `routes` option
@@ -28,6 +32,7 @@ const router = new VueRouter({
 
 
 new Vue({
-    router,
-    render: h => h(App)
+  router,
+  vuetify,
+  render: h => h(App)
 }).$mount("#app");

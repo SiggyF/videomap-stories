@@ -49,7 +49,7 @@
     "chapters": [
       {
 	      "id": "glacier-np",
-	      "title": "Twaits Glacier",
+	      "title": "Twaites Glacier",
 	      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Thwaits_Glacier.jpg/1600px-Thwaits_Glacier.jpg",
 	      "description": "\nThe Thwaites Glacier flows into the arm of the Amundsen Sea in West Antarctica. Only a <a src=\"https://thwaitesglacier.org/news/scientists-embark-ambitious-mission-antarcticas-thwaites-glacier\">few people</a> ever set foot on this glacier due to it's remote location, 1600 km away from the British research station.\n      ",
 	      "location": {
@@ -71,7 +71,7 @@
 	      "id": "harrison1998",
 	      "title": "Harrison Glacier, 1998",
 	      "image": "",
-	      "description": "Harrison Glacier is located in the US state of Montana in Glacier National Park. Situated on a southeast facing ridge immediately south of Mount Jackson, Harrison Glacier is the largest glacier in Glacier National Park. Compared to many of the vanishing glaciers in Glacier National Park, Harrison Glacier has a much higher altitude accumulation zone (approximately 9,000 feet (2,700 m)) which has allowed it to maintain some equilibrium in its glacier mass balance.",
+	      "description": "Iceberg B22 broke of the Thwaites glacier in 2002. It was <a  href='https://www.theguardian.com/environment/2002/mar/20/globalwarming.physicalsciences'>then</a> more than 64 kilometres wide and 85 kilometres long. More than 15 years later it is still floating around in the ",
 	      "location": {
 	        "center": [-109.89284, -74.28918],
 	        "zoom": 8.13,

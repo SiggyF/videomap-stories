@@ -78,7 +78,7 @@
                 <v-btn icon>
                   <v-icon>mdi-share-variant</v-icon>
                 </v-btn>
-                <v-btn icon :to="'/stories/' + story.id">
+                <v-btn icon :to="{name: 'map', params: {id: story.id}}">
                   <v-icon>mdi-presentation-play</v-icon>
                 </v-btn>
 
