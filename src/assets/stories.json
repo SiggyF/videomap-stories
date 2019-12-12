@@ -72,58 +72,52 @@
 	        "layer": "ice",
 	        "opacity": 1
 	      }]
-      },
-      {
-	      "id": "harrison1998",
-	      "title": "Harrison Glacier, 1998",
-	      "image": "",
-	      "description": "Iceberg B22 broke of the Thwaites glacier in 2002. It was <a  href='https://www.theguardian.com/environment/2002/mar/20/globalwarming.physicalsciences'>then</a> more than 64 kilometres wide and 85 kilometres long. More than 15 years later it is still floating around in the ",
-	      "location": {
-	        "center": [-109.89284, -74.28918],
-	        "zoom": 8.13,
-	        "pitch": 60,
-	        "bearing": 12.75
-	      },
-	      "onChapterEnter": [],
-	      "onChapterExit": []
-      },
-      {
-	      "id": "harrison2015",
-	      "title": "Change",
-	      "image": "",
-	      "description": "Show player",
-	      "location": {
-	        "center": [-109.83808, -74.25103],
-	        "zoom": 9.94,
-	        "pitch": 59.5,
-	        "bearing": 10.35
-	      },
-	      "onChapterEnter": [{
-	        "layer": "gnpglaciers-2015",
-	        "opacity": 0.25
-	      }],
-	      "onChapterExit": [{
-	        "layer": "gnpglaciers-2015",
-	        "opacity": 0
-	      }]
       }
     ]
   },
   {
     "id": "merowe",
-	  "style": "mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d",
+	  "style": {
+      "version": 8,
+      "sources": {
+        "satellite": {
+          "type": "raster",
+          "url": "mapbox://mapbox.satellite",
+          "tileSize": 256
+        }
+      },
+      "layers": [
+        {
+          "id": "satellite",
+          "type": "raster",
+          "paint": {
+            "raster-saturation": -1,
+            "raster-brightness-max": 0.6
+          },
+          "source": "satellite"
+        }
+      ]
+
+
+    },
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/MeroweDam01.jpg/800px-MeroweDam01.jpg",
+	  "location": {
+      "center": [35.96796, 14.24593],
+      "zoom": 7.48,
+      "pitch": 0.00,
+      "bearing": 0.00
+	  },
 	  "layers": [{
 		  "id": "dam",
 		  "type": "raster",
 		  "source": {
 			  "type": "video-tiled",
-			  "tiles": ["http://localhost:8080/dam-Merowe-video/{z}/{x}/{y}.webm"],
+	      "tiles": ["https://storage.googleapis.com/deltares-video-map/dam-Merowe-video/{z}/{x}/{y}.webm"],
 			  "scheme": "xyz",
 			  "tileSize": 512,
-			  "minzoom": 0,
+			  "minzoom": 6,
 			  "maxzoom": 12,
-			  "playbackRate": 1,
+			  "playbackRate": 10,
 			  "geometryFilter": "https://storage.googleapis.com/deltares-video-map/dam-Merowe-video/geometry.geojson"
 		  },
 		  "paint": {}
@@ -137,33 +131,6 @@
 	  "byline": "",
 	  "footer": "Source: Story text from Wikipedia, August 2019. Data from <a href=\"https://www.usgs.gov/centers/norock/science/retreat-glaciers-glacier-national-park\">USGS</a>",
 	  "chapters": [
-      {
-		    "id": "glacier-np",
-		    "title": "Glacier National Park Glaciers",
-		    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg",
-		    "description": "\n                The Thwaites Glacier flows into the arm of the Amundsen Sea in West Antarctica. Only a <a src=\"https://thwaitesglacier.org/news/scientists-embark-ambitious-mission-antarcticas-thwaites-glacier\">few people</a> ever set foot on this glacier due to it's remote location, 1600 km away from the British research station.\n      ",
-		    "location": {
-			    "center": [35.8824, 14.4041],
-			    "zoom": 8,
-			    "pitch": 60,
-			    "bearing": 12.75
-		    },
-		    "onChapterEnter": [],
-		    "onChapterExit": []
-	    }, {
-		    "id": "harrison1998",
-		    "title": "Harrison Glacier, 1998",
-		    "image": "",
-		    "description": "Harrison Glacier is located in the US state of Montana in Glacier National Park. Situated on a southeast facing ridge immediately south of Mount Jackson, Harrison Glacier is the largest glacier in Glacier National Park. Compared to many of the vanishing glaciers in Glacier National Park, Harrison Glacier has a much higher altitude accumulation zone (approximately 9,000 feet (2,700 m)) which has allowed it to maintain some equilibrium in its glacier mass balance.",
-		    "location": {
-			    "center": [-109.89284, -74.28918],
-			    "zoom": 8.13,
-			    "pitch": 60,
-			    "bearing": 12.75
-		    },
-		    "onChapterEnter": [],
-		    "onChapterExit": []
-	    }
     ]
   },
   {
@@ -207,7 +174,7 @@
         "type": "video-tiled",
 	      "tiles": ["https://storage.googleapis.com/deltares-video-map/viirs-video/{z}/{x}/{y}.webm"],
 	      "tileSize": "512",
-        "playbackRate": 1
+        "playbackRate": 5
 	    },
 	    "paint": {}
     }]
@@ -217,7 +184,47 @@
     "id": "bathymetry",
     "title": "Wadden",
     "subtitle": "The intertidal area in the North Sea is a favourite area for European birds. How does it react to sea-level rise and gas extraction?",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Den_Helder_4.77628E_52.95026N.jpg/800px-Den_Helder_4.77628E_52.95026N.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Den_Helder_4.77628E_52.95026N.jpg/800px-Den_Helder_4.77628E_52.95026N.jpg",
+    "location": {
+      "center": [6.22777, 53.47140],
+      "zoom": 8.12,
+      "pitch": 0.00,
+      "bearing": 0.00
+    },
+    "style": {
+      "version": 8,
+      "sources": {
+        "satellite": {
+          "type": "raster",
+          "url": "mapbox://mapbox.satellite",
+          "tileSize": 256
+        }
+      },
+      "layers": [
+        {
+          "id": "satellite",
+          "type": "raster",
+          "paint": {
+            "raster-saturation": -1,
+            "raster-brightness-max": 0.6
+          },
+          "source": "satellite"
+        }
+      ]
+
+
+    },
+    "layers": [{
+	    "id": "bathymetry",
+	    "type": "raster",
+	    "source": {
+        "type": "video-tiled",
+	      "tiles": ["https://storage.googleapis.com/deltares-video-map/sdb-rgb-v3.3-video/{z}/{x}/{y}.webm"],
+	      "tileSize": "512",
+        "playbackRate": 5
+	    },
+	    "paint": {}
+    }]
 
   }
 
