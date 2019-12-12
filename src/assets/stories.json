@@ -38,6 +38,12 @@
 	    },
 	    "paint": {}
     }],
+	  "location": {
+	    "center": [-110.89744, -74.15099],
+	    "zoom": 6.3,
+	    "pitch": 60,
+	    "bearing": 12.75
+	  },
     "accessToken": "pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg",
     "showMarkers": false,
     "alignment": "left",
@@ -164,13 +170,55 @@
     "id": "nightwatch",
     "title": "The Night Watch",
     "subtitle": "If you look at the earth at night you see the populations lighting up. What are we up to?",
-    "image": "images/viirs.png"
+    "image": "images/viirs.png",
+	  "location": {
+	    "center": [0, 0],
+	    "zoom": 1,
+	    "pitch": 0,
+	    "bearing": 0
+	  },
+    "style": {
+      "version": 8,
+      "sources": {
+        "satellite": {
+          "type": "raster",
+          "url": "mapbox://mapbox.satellite",
+          "tileSize": 256
+        }
+      },
+      "layers": [
+        {
+          "id": "satellite",
+          "type": "raster",
+          "paint": {
+            "raster-saturation": -1,
+            "raster-brightness-max": 0.6
+          },
+          "source": "satellite"
+        }
+      ]
+
+
+    },
+    "layers": [{
+	    "id": "nightwatch",
+	    "type": "raster",
+	    "source": {
+        "type": "video-tiled",
+	      "tiles": ["https://storage.googleapis.com/deltares-video-map/viirs-video/{z}/{x}/{y}.webm"],
+	      "tileSize": "512",
+        "playbackRate": 1
+	    },
+	    "paint": {}
+    }]
+
   },
   {
     "id": "bathymetry",
     "title": "Wadden",
     "subtitle": "The intertidal area in the North Sea is a favourite area for European birds. How does it react to sea-level rise and gas extraction?",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Den_Helder_4.77628E_52.95026N.jpg/800px-Den_Helder_4.77628E_52.95026N.jpg"
+
   }
 
 ]
