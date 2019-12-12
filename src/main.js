@@ -20,7 +20,7 @@ Vue.config.productionTip = false;
 const routes = [
   { path: '/stories/:id', component: Story, name: 'story' },
   { path: '/map/:id', component: Map, name: 'map' },
-  { path: '/', component: Home }
+  { path: '/', component: Home, name: 'home' }
 ]
 
 // 3. Create the router instance and pass the `routes` option

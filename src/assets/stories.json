@@ -21,8 +21,6 @@
           "source": "satellite"
         }
       ]
-
-
     },
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Thwaits_Glacier.jpg/800px-Thwaits_Glacier.jpg",
     "layers": [{
@@ -32,8 +30,8 @@
         "type": "video-tiled",
 
 	      "tiles": ["https://storage.googleapis.com/deltares-video-map/s1-ice-video/{z}/{x}/{y}.webm"],
-	      "tileSize": "512",
-        "playbackRate": 1,
+	      "tileSize": "1024",
+        "playbackRate": 10,
         "geometryFilter": "https://storage.googleapis.com/deltares-video-map/s1-ice-video/geometry.geojson"
 	    },
 	    "paint": {}
@@ -114,7 +112,7 @@
 			  "type": "video-tiled",
 	      "tiles": ["https://storage.googleapis.com/deltares-video-map/dam-Merowe-video/{z}/{x}/{y}.webm"],
 			  "scheme": "xyz",
-			  "tileSize": 512,
+			  "tileSize": 1024,
 			  "minzoom": 6,
 			  "maxzoom": 12,
 			  "playbackRate": 10,
@@ -173,7 +171,7 @@
 	    "source": {
         "type": "video-tiled",
 	      "tiles": ["https://storage.googleapis.com/deltares-video-map/viirs-video/{z}/{x}/{y}.webm"],
-	      "tileSize": "512",
+	      "tileSize": "1024",
         "playbackRate": 5
 	    },
 	    "paint": {}
@@ -220,7 +218,7 @@
 	    "source": {
         "type": "video-tiled",
 	      "tiles": ["https://storage.googleapis.com/deltares-video-map/sdb-rgb-v3.3-video/{z}/{x}/{y}.webm"],
-	      "tileSize": "512",
+	      "tileSize": "1024",
         "playbackRate": 5
 	    },
 	    "paint": {}

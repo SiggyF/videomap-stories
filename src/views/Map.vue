@@ -1,8 +1,43 @@
 <template>
-<v-container fluid class="fill-height">
-  <v-mapbox :access-token="accessToken" :map-style="mapStyle" ref="mapbox"></v-mapbox>
-</v-container>
 
+<div class="fill-height">
+  <v-navigation-drawer
+    v-model="drawer"
+    app
+    clipped
+    >
+    <v-list dense>
+      <v-list-item link :to="{name: 'home'}">
+        <v-list-item-action >
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <template v-for="item in stories" >
+        <v-list-item link :to="{name: 'map', params: {id: item.id}}" :key="item.id" >
+          <v-list-item-action>
+            <v-icon>mdi-map</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+    </v-list>
+  </v-navigation-drawer>
+  <v-app-bar
+    app
+    clipped-left
+    >
+    <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    <v-toolbar-title>Video Maps</v-toolbar-title>
+  </v-app-bar>
+  <v-container fluid class="fill-height">
+    <v-mapbox :access-token="accessToken" :map-style="mapStyle" ref="mapbox"></v-mapbox>
+  </v-container>
+</div>
 </template>
 <script>
 import Vue from 'vue'
@@ -28,7 +63,9 @@ export default {
     return {
       accessToken: token,
       story: story,
-      mapStyle: story.style
+      mapStyle: story.style,
+      drawer: false,
+      stories
 
     }
   },
@@ -65,7 +102,7 @@ export default {
 }
 </script>
 <style>
-.mapboxgl-map {
+  .mapboxgl-map {
   height: 100%;
   width: 100%;
 }

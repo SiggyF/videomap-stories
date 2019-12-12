@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="fill-height">
   <v-navigation-drawer
     v-model="drawer"
     app
