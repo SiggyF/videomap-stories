@@ -37,10 +37,10 @@
 	    "paint": {}
     }],
 	  "location": {
-	    "center": [-110.89744, -74.15099],
-	    "zoom": 6.3,
-	    "pitch": 60,
-	    "bearing": 12.75
+      "center": [-108.25923, -74.94422],
+      "zoom": 9,
+      "pitch": 0,
+      "bearing": 180
 	  },
     "accessToken": "pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg",
     "showMarkers": false,

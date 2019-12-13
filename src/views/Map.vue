@@ -10,9 +10,10 @@ import stories from '@/assets/stories.json'
 
 
 // You might want to import the relevant css, for example:
-import 'mapbox-gl/dist/mapbox-gl.css';
+import 'mapbox-gl/dist/mapbox-gl.css'
 // for the v-mapbox-geocoder
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import mapboxgl  from 'mapbox-gl'
 
 // Use the plugin
 Vue.use(Vue2MapboxGL);
@@ -33,7 +34,10 @@ export default {
   },
   mounted () {
     // TODO: this should be in object
-    this.map.on('load', this.addLayers)
+    this.map.on('load', () => {
+      this.addControls()
+      this.addLayers()
+    })
 
   },
   computed: {
@@ -44,9 +48,23 @@ export default {
 
   },
   methods: {
+    addControls () {
+      let map  = this.map
+      map.addControl(new mapboxgl.NavigationControl())
+      map.addControl(new mapboxgl.ScaleControl(), 'bottom-right')
+    },
     addLayers () {
+      // let a =  this.map.flyTo(
+      //   this.story.location
+      // )
+      // console.log('a', a)
+
       this.map.flyTo(
-        this.story.location
+        {
+          speed: 0.5,
+          ...this.story.location,
+          pitch: 0
+        }
       )
       this.story.layers.forEach(
         layer => {
@@ -55,7 +73,8 @@ export default {
           // assume source has same name as layer
           let source = this.map.getSource(layer.id)
           if (source.player) {
-            source.player.play()
+            // pass fps and timestep
+            source.player.play(15, 0.1)
           }
         }
       )

@@ -28,7 +28,6 @@
     </v-navigation-drawer>
     <v-app-bar
       app
-      clipped-left
       >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Video Maps</v-toolbar-title>
@@ -51,7 +50,7 @@ export default {
   },
   data () {
     return {
-      drawer: true,
+      drawer: false,
       stories
     }
     //
